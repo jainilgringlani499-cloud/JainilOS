@@ -79,49 +79,55 @@
 
 
         <!-- FILE MANAGER -->
-        <div class="window app-window" id="files-window" data-app="files">
+        <!-- FILE MANAGER -->
+<div class="window app-window" id="files-window" data-app="files">
 
-            <div class="window-header">
-                <span class="window-title">File Manager</span>
+    <div class="window-header">
 
-                <div class="window-controls">
-                    <button class="minimize-btn">−</button>
-                    <button class="maximize-btn">□</button>
-                    <button class="close-btn">×</button>
-                </div>
-            </div>
+        <span class="window-title">
+            File Manager
+        </span>
 
-            <div class="window-content">
+        <div class="window-controls">
+            <button class="minimize-btn">−</button>
+            <button class="maximize-btn">□</button>
+            <button class="close-btn">×</button>
+        </div>
 
-                <div class="file-path">
-                    🏠 Home
-                </div>
+    </div>
 
-                <div class="file-list">
+    <div class="window-content">
 
-                    <button class="file">
-                        📁 Documents
-                    </button>
+        <!-- NAVIGATION -->
+        <div class="file-navigation">
 
-                    <button class="file">
-                        📁 Downloads
-                    </button>
+            <button id="file-back">
+                ← Back
+            </button>
 
-                    <button class="file">
-                        📁 Pictures
-                    </button>
+            <button id="file-home">
+                🏠 Home
+            </button>
 
-                    <button class="file">
-                        📄 README.txt
-                    </button>
-
-                </div>
-
-                <div id="file-message"></div>
-
-            </div>
+            <span id="file-path">
+                Home
+            </span>
 
         </div>
+
+
+        <!-- FILE LIST -->
+        <div id="file-list" class="file-list">
+        </div>
+
+
+        <!-- FILE MESSAGE -->
+        <div id="file-message">
+        </div>
+
+    </div>
+
+</div>
 
 
         <!-- NOTES -->

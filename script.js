@@ -22,9 +22,6 @@ document.addEventListener("DOMContentLoaded", () => {
 
     const notesArea = document.getElementById("notes-area");
 
-    const fileButtons = document.querySelectorAll(".file");
-    const fileMessage = document.getElementById("file-message");
-
     const soundToggle = document.getElementById("sound-toggle");
 
 
@@ -525,34 +522,238 @@ document.addEventListener("DOMContentLoaded", () => {
     });
 
 
-    /* =================================================
-       FILE MANAGER
-    ================================================= */
+   /* =================================================
+   FILE MANAGER
+================================================= */
 
-    fileButtons.forEach(file => {
+const fileList =
+    document.getElementById("file-list");
 
-        file.addEventListener("click", () => {
+const filePath =
+    document.getElementById("file-path");
 
-            const name =
-                file.textContent.trim();
+const fileBack =
+    document.getElementById("file-back");
 
-            if (name.includes("README")) {
+const fileHome =
+    document.getElementById("file-home");
 
-                fileMessage.textContent =
-                    "📄 README.txt — Welcome to JAINIL OS!";
+const fileMessage =
+    document.getElementById("file-message");
+
+
+/* FILE SYSTEM */
+
+const fileSystem = {
+
+    Home: {
+
+        type: "folder",
+
+        children: {
+
+            Documents: {
+                type: "folder",
+
+                children: {
+
+                    "My Project.txt": {
+                        type: "file",
+
+                        content:
+                            "This is my JAINIL OS project."
+                    },
+
+                    "Ideas.txt": {
+                        type: "file",
+
+                        content:
+                            "Robotics\nCoding\nAI\nWeb OS"
+                    }
+
+                }
+            },
+
+
+            Downloads: {
+
+                type: "folder",
+
+                children: {
+
+                    "Downloads.txt": {
+                        type: "file",
+
+                        content:
+                            "Your downloaded files will appear here."
+                    }
+
+                }
+
+            },
+
+
+            Pictures: {
+
+                type: "folder",
+
+                children: {
+
+                    "Pictures.txt": {
+                        type: "file",
+
+                        content:
+                            "Your pictures will appear here."
+                    }
+
+                }
+
+            },
+
+
+            "README.txt": {
+
+                type: "file",
+
+                content:
+                    "Welcome to JAINIL OS!\n\n" +
+                    "This is the File Manager of JAINIL OS."
+            }
+
+        }
+
+    }
+
+};
+
+
+/* CURRENT LOCATION */
+
+let currentPath = ["Home"];
+
+
+/* GET CURRENT FOLDER */
+
+function getCurrentFolder() {
+
+    let folder = fileSystem;
+
+    for (const part of currentPath) {
+
+        if (part === "Home") {
+
+            folder = folder.Home;
+
+        } else {
+
+            folder =
+                folder.children[part];
+
+        }
+
+    }
+
+    return folder;
+
+}
+
+
+/* DISPLAY FILES */
+
+function renderFiles() {
+
+    const folder =
+        getCurrentFolder();
+
+    fileList.innerHTML = "";
+
+    fileMessage.textContent = "";
+
+    filePath.textContent =
+        currentPath.join(" / ");
+
+
+    Object.entries(folder.children)
+        .forEach(([name, item]) => {
+
+            const button =
+                document.createElement("button");
+
+            button.className = "file";
+
+
+            if (item.type === "folder") {
+
+                button.textContent =
+                    `📁 ${name}`;
 
             } else {
 
-                fileMessage.textContent =
-                    `${name} is currently empty.`;
+                button.textContent =
+                    `📄 ${name}`;
 
             }
 
+
+            button.addEventListener(
+                "click",
+                () => {
+
+                    if (item.type === "folder") {
+
+                        currentPath.push(name);
+
+                        renderFiles();
+
+                    }
+
+                    else {
+
+                        fileMessage.textContent =
+                            `${name}: ${item.content}`;
+
+                    }
+
+                }
+            );
+
+
+            fileList.appendChild(button);
+
         });
 
-    });
+}
 
 
+/* BACK */
+
+fileBack.addEventListener("click", () => {
+
+    if (currentPath.length > 1) {
+
+        currentPath.pop();
+
+        renderFiles();
+
+    }
+
+});
+
+
+/* HOME */
+
+fileHome.addEventListener("click", () => {
+
+    currentPath = ["Home"];
+
+    renderFiles();
+
+});
+
+
+/* INITIAL LOAD */
+
+renderFiles();
     /* =================================================
        TERMINAL
     ================================================= */
