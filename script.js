@@ -707,12 +707,11 @@ function renderFiles() {
 
                     }
 
-                    else {
+else {
 
-                        fileMessage.textContent =
-                            `${name}: ${item.content}`;
+    openEditor(name, item.content);
 
-                    }
+}
 
                 }
             );
@@ -755,115 +754,271 @@ fileHome.addEventListener("click", () => {
 
 renderFiles();
     /* =================================================
-       TERMINAL
-    ================================================= */
+   TERMINAL
+================================================= */
 
-    terminalInput.addEventListener(
-        "keydown",
-        event => {
+const terminalHistory = [];
 
-            if (event.key !== "Enter") {
+let historyIndex = -1;
+
+
+/* TERMINAL COMMAND */
+
+terminalInput.addEventListener(
+    "keydown",
+    event => {
+
+        /* COMMAND HISTORY */
+
+        if (event.key === "ArrowUp") {
+
+            if (terminalHistory.length === 0) {
                 return;
             }
 
-            const command =
-                terminalInput.value
-                    .trim()
-                    .toLowerCase();
-
-            terminalInput.value = "";
-
-            if (!command) {
-                return;
+            if (historyIndex < terminalHistory.length - 1) {
+                historyIndex++;
             }
 
+            terminalInput.value =
+                terminalHistory[
+                    terminalHistory.length - 1 - historyIndex
+                ];
 
-            let output = "";
+            event.preventDefault();
+
+            return;
+        }
 
 
-            if (command === "help") {
+        if (event.key === "ArrowDown") {
 
-                output =
+            if (historyIndex > 0) {
+
+                historyIndex--;
+
+                terminalInput.value =
+                    terminalHistory[
+                        terminalHistory.length - 1 - historyIndex
+                    ];
+
+            } else {
+
+                historyIndex = -1;
+
+                terminalInput.value = "";
+
+            }
+
+            event.preventDefault();
+
+            return;
+        }
+
+
+        /* ENTER */
+
+        if (event.key !== "Enter") {
+            return;
+        }
+
+
+        const command =
+            terminalInput.value
+                .trim();
+
+
+        terminalInput.value = "";
+
+
+        if (!command) {
+            return;
+        }
+
+
+        terminalHistory.push(command);
+
+        historyIndex = -1;
+
+
+        const lowerCommand =
+            command.toLowerCase();
+
+
+        let output = "";
+
+
+        /* HELP */
+
+        if (lowerCommand === "help") {
+
+            output =
 `Available commands:
 
-help
-clear
-about
-date
-time
-whoami
-os
-apps`;
+help       Show commands
+clear      Clear terminal
+about      About JAINIL OS
+date       Show date
+time       Show time
+whoami     Show current user
+os         Show OS information
+apps       Show installed apps
+pwd        Show current directory
+ls         List files
+echo       Print text
+neofetch   System information`;
 
-            }
+        }
 
-            else if (command === "clear") {
 
-                terminalOutput.textContent = "";
+        /* CLEAR */
 
-                return;
+        else if (lowerCommand === "clear") {
 
-            }
+            terminalOutput.textContent = "";
 
-            else if (command === "about") {
+            return;
 
-                output =
-                    "JAINIL OS — Web OS project by Jainil.";
+        }
 
-            }
 
-            else if (command === "date") {
+        /* ABOUT */
 
-                output =
-                    new Date().toDateString();
+        else if (lowerCommand === "about") {
 
-            }
+            output =
+                "JAINIL OS — Web OS project by Jainil.";
 
-            else if (command === "time") {
+        }
 
-                output =
-                    new Date().toLocaleTimeString();
 
-            }
+        /* DATE */
 
-            else if (command === "whoami") {
+        else if (lowerCommand === "date") {
 
-                output = "jainil";
+            output =
+                new Date().toDateString();
 
-            }
+        }
 
-            else if (command === "os") {
 
-                output =
-                    "JAINIL OS Web Desktop";
+        /* TIME */
 
-            }
+        else if (lowerCommand === "time") {
 
-            else if (command === "apps") {
+            output =
+                new Date().toLocaleTimeString();
 
-                output =
+        }
+
+
+        /* WHOAMI */
+
+        else if (lowerCommand === "whoami") {
+
+            output = "jainil";
+
+        }
+
+
+        /* OS */
+
+        else if (lowerCommand === "os") {
+
+            output =
+                "JAINIL OS Web Desktop — Version 1.2";
+
+        }
+
+
+        /* APPS */
+
+        else if (lowerCommand === "apps") {
+
+            output =
 `Installed apps:
 
 File Manager
 Notes
+Text Editor
 Terminal
 Settings`;
 
-            }
-
-            else {
-
-                output =
-                    `Command not found: ${command}`;
-
-            }
+        }
 
 
-            terminalOutput.textContent +=
-                `\n${output}\n`;
+        /* PWD */
+
+        else if (lowerCommand === "pwd") {
+
+            output = "/home/jainil";
 
         }
-    );
+
+
+        /* LS */
+
+        else if (lowerCommand === "ls") {
+
+            output =
+`Documents
+Downloads
+Pictures
+README.txt`;
+
+        }
+
+
+        /* ECHO */
+
+        else if (lowerCommand.startsWith("echo ")) {
+
+            output =
+                command.substring(5);
+
+        }
+
+
+        /* NEOFETCH */
+
+        else if (lowerCommand === "neofetch") {
+
+            output =
+`       ██╗ █████╗ ██╗███╗   ██╗██╗██╗
+       ██║██╔══██╗██║████╗  ██║██║██║
+       ██║███████║██║██╔██╗ ██║██║██║
+  ██   ██║██╔══██║██║██║╚██╗██║██║██║
+  ╚█████╔╝██║  ██║██║██║ ╚████║██║██║
+   ╚════╝ ╚═╝  ╚═╝╚═╝╚═╝  ╚═══╝╚═╝╚═╝
+
+OS: JAINIL OS
+Version: 1.2
+User: jainil
+Shell: JAINIL Shell
+Desktop: JAINIL Desktop
+Apps: 5`;
+
+        }
+
+
+        /* UNKNOWN COMMAND */
+
+        else {
+
+            output =
+                `Command not found: ${command}`;
+
+        }
+
+
+        terminalOutput.textContent +=
+            `\n${output}\n`;
+
+        terminalOutput.scrollTop =
+            terminalOutput.scrollHeight;
+
+    }
+);
 
 
     /* =================================================
@@ -906,5 +1061,63 @@ Settings`;
     document.getElementById(
         "welcome-window"
     ).style.display = "block";
+
+});
+/* =================================================
+   TEXT EDITOR
+================================================= */
+
+const editorWindow =
+    document.getElementById("editor-window");
+
+const editorArea =
+    document.getElementById("editor-area");
+
+const editorFilename =
+    document.getElementById("editor-filename");
+
+const saveFile =
+    document.getElementById("save-file");
+
+let editingFile = null;
+
+
+/* OPEN EDITOR */
+
+function openEditor(name, content) {
+
+    editingFile = name;
+
+    editorFilename.textContent = name;
+
+    editorArea.value = content;
+
+    editorWindow.style.display = "block";
+
+    editorWindow.classList.remove("minimized");
+
+    highestZ++;
+
+    editorWindow.style.zIndex = highestZ;
+
+    removeTaskbarButton(editorWindow);
+
+}
+
+
+/* SAVE FILE */
+
+saveFile.addEventListener("click", () => {
+
+    if (!editingFile) {
+        return;
+    }
+
+    localStorage.setItem(
+        `jainil-file-${editingFile}`,
+        editorArea.value
+    );
+
+    alert(`${editingFile} saved!`);
 
 });

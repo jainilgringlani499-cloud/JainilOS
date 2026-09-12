@@ -51,7 +51,54 @@
                 <span>Settings</span>
             </div>
 
+            <div class="desktop-icon" data-app="editor">
+
+    <div class="icon">📝</div>
+
+    <span>Editor</span>
+
+</div>
+
         </div>
+        <!-- TEXT EDITOR -->
+
+<div class="window app-window" id="editor-window" data-app="editor">
+
+    <div class="window-header">
+
+        <span class="window-title">
+            Text Editor
+        </span>
+
+        <div class="window-controls">
+            <button class="minimize-btn">−</button>
+            <button class="maximize-btn">□</button>
+            <button class="close-btn">×</button>
+        </div>
+
+    </div>
+
+    <div class="editor-content">
+
+        <div class="editor-toolbar">
+
+            <span id="editor-filename">
+                Untitled.txt
+            </span>
+
+            <button id="save-file">
+                💾 Save
+            </button>
+
+        </div>
+
+        <textarea
+            id="editor-area"
+            placeholder="Start writing..."></textarea>
+
+    </div>
+
+</div>         
 
 
         <!-- WELCOME WINDOW -->
@@ -144,6 +191,7 @@
             </div>
 
             <div class="window-content">
+                
 
                 <h2>📝 Notes</h2>
 
@@ -289,6 +337,11 @@
                     data-app="settings">
                     ⚙️ Settings
                 </button>
+                <button
+    class="launcher-app"
+    data-app="editor">
+    📝 Text Editor
+</button>
 
             </div>
 
