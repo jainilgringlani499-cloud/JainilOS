@@ -1119,5 +1119,169 @@ saveFile.addEventListener("click", () => {
     );
 
     alert(`${editingFile} saved!`);
+    /* =================================================
+   NOTIFICATION CENTER
+================================================= */
+
+const notificationButton =
+    document.getElementById("notification-button");
+
+const notificationCenter =
+    document.getElementById("notification-center");
+
+const notificationList =
+    document.getElementById("notification-list");
+
+const clearNotifications =
+    document.getElementById("clear-notifications");
+
+
+let notifications = [];
+
+
+/* SHOW NOTIFICATIONS */
+
+function renderNotifications() {
+
+    notificationList.innerHTML = "";
+
+    if (notifications.length === 0) {
+
+        notificationList.innerHTML =
+            `<div class="no-notifications">
+                No notifications
+            </div>`;
+
+        return;
+    }
+
+
+    notifications.forEach(notification => {
+
+        const item =
+            document.createElement("div");
+
+        item.className = "notification";
+
+
+        item.innerHTML = `
+
+            <div class="notification-title">
+                ${notification.title}
+            </div>
+
+            <div class="notification-message">
+                ${notification.message}
+            </div>
+
+            <div class="notification-time">
+                ${notification.time}
+            </div>
+
+        `;
+
+
+        notificationList.appendChild(item);
+
+    });
+
+}
+
+
+/* ADD NOTIFICATION */
+
+function addNotification(title, message) {
+
+    const now = new Date();
+
+    const time =
+        now.toLocaleTimeString([], {
+            hour: "2-digit",
+            minute: "2-digit"
+        });
+
+
+    notifications.unshift({
+
+        title: title,
+
+        message: message,
+
+        time: time
+
+    });
+
+
+    renderNotifications();
+
+}
+
+
+/* OPEN / CLOSE */
+
+notificationButton.addEventListener("click", event => {
+
+    event.stopPropagation();
+
+    if (
+        notificationCenter.style.display === "block"
+    ) {
+
+        notificationCenter.style.display =
+            "none";
+
+    } else {
+
+        notificationCenter.style.display =
+            "block";
+
+    }
 
 });
+
+
+/* CLEAR */
+
+clearNotifications.addEventListener("click", () => {
+
+    notifications = [];
+
+    renderNotifications();
+
+});
+
+
+/* CLOSE OUTSIDE */
+
+document.addEventListener("click", event => {
+
+    if (
+        !notificationCenter.contains(event.target) &&
+        event.target !== notificationButton
+    ) {
+
+        notificationCenter.style.display =
+            "none";
+
+    }
+
+});
+
+
+/* STARTUP NOTIFICATION */
+
+setTimeout(() => {
+
+    addNotification(
+        "Welcome to JAINIL OS",
+        "Your desktop is ready."
+    );
+
+}, 2500);
+
+
+/* INITIAL DISPLAY */
+
+renderNotifications();
+
+}); 

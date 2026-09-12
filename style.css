@@ -707,3 +707,161 @@ body {
     }
 
 }
+/* ================= NOTIFICATION CENTER ================= */
+
+#notification-button {
+    width: 42px;
+    height: 42px;
+
+    flex-shrink: 0;
+
+    border: none;
+
+    border-radius: 12px;
+
+    background: rgba(255, 255, 255, 0.08);
+
+    color: white;
+
+    font-size: 17px;
+
+    cursor: pointer;
+
+    transition: 0.15s;
+}
+
+#notification-button:hover {
+    background: rgba(255, 255, 255, 0.18);
+
+    transform: scale(1.05);
+}
+
+
+#notification-center {
+    position: absolute;
+
+    right: 25px;
+    bottom: 82px;
+
+    width: 330px;
+    max-height: 430px;
+
+    padding: 15px;
+
+    background: rgba(15, 18, 30, 0.96);
+
+    backdrop-filter: blur(25px);
+
+    border: 1px solid rgba(255, 255, 255, 0.12);
+
+    border-radius: 18px;
+
+    box-shadow:
+        0 20px 60px rgba(0, 0, 0, 0.55);
+
+    z-index: 4000;
+
+    display: none;
+
+    overflow: hidden;
+}
+
+
+.notification-header {
+    display: flex;
+
+    align-items: center;
+
+    justify-content: space-between;
+
+    margin-bottom: 12px;
+
+    font-size: 16px;
+
+    font-weight: bold;
+}
+
+
+#clear-notifications {
+    border: none;
+
+    padding: 6px 9px;
+
+    border-radius: 7px;
+
+    background: rgba(255, 255, 255, 0.08);
+
+    color: #aaa;
+
+    cursor: pointer;
+
+    font-size: 11px;
+}
+
+#clear-notifications:hover {
+    background: rgba(255, 255, 255, 0.15);
+
+    color: white;
+}
+
+
+#notification-list {
+    max-height: 350px;
+
+    overflow-y: auto;
+
+    display: flex;
+
+    flex-direction: column;
+
+    gap: 8px;
+}
+
+
+.notification {
+    padding: 12px;
+
+    border-radius: 10px;
+
+    background: rgba(255, 255, 255, 0.06);
+
+    border: 1px solid rgba(255, 255, 255, 0.05);
+}
+
+
+.notification-title {
+    font-size: 13px;
+
+    font-weight: bold;
+
+    margin-bottom: 4px;
+}
+
+
+.notification-message {
+    color: #aaa;
+
+    font-size: 12px;
+
+    line-height: 1.4;
+}
+
+
+.notification-time {
+    margin-top: 7px;
+
+    color: #777;
+
+    font-size: 10px;
+}
+
+
+.no-notifications {
+    padding: 25px 10px;
+
+    text-align: center;
+
+    color: #777;
+
+    font-size: 13px;
+}
