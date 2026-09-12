@@ -1,0 +1,667 @@
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    font-family: Arial, Helvetica, sans-serif;
+    overflow: hidden;
+    background: #080a12;
+    color: white;
+}
+
+
+/* ================= BOOT ================= */
+
+#boot-screen {
+    position: fixed;
+    inset: 0;
+
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+
+    background: #080a12;
+
+    z-index: 9999;
+}
+
+#boot-screen h1 {
+    font-size: 42px;
+    letter-spacing: 3px;
+}
+
+#boot-text {
+    margin-top: 12px;
+    color: #aaa;
+}
+
+
+/* ================= DESKTOP ================= */
+
+#desktop {
+    position: relative;
+
+    width: 100vw;
+    height: 100vh;
+
+    overflow: hidden;
+
+    background:
+        radial-gradient(
+            circle at 20% 20%,
+            rgba(80, 70, 180, 0.25),
+            transparent 35%
+        ),
+        radial-gradient(
+            circle at 80% 80%,
+            rgba(30, 100, 180, 0.2),
+            transparent 35%
+        ),
+        linear-gradient(
+            135deg,
+            #090b16,
+            #11162b
+        );
+}
+
+
+/* ================= BOTTOM BAR ================= */
+
+#top-bar {
+    position: absolute;
+
+    bottom: 12px;
+    left: 50%;
+
+    transform: translateX(-50%);
+
+    width: 520px;
+    height: 60px;
+
+    background: rgba(10, 12, 25, 0.78);
+
+    backdrop-filter: blur(20px);
+
+    border: 1px solid rgba(255, 255, 255, 0.1);
+
+    border-radius: 18px;
+
+    box-shadow:
+        0 10px 40px rgba(0, 0, 0, 0.45);
+
+    z-index: 2000;
+}
+
+.os-name {
+    display: none;
+}
+
+#clock {
+    position: absolute;
+
+    right: 15px;
+    top: 50%;
+
+    transform: translateY(-50%);
+
+    font-size: 13px;
+
+    opacity: 0.85;
+}
+
+
+/* ================= DESKTOP ICONS ================= */
+
+.desktop-icons {
+    position: absolute;
+
+    top: 25px;
+    left: 25px;
+
+    display: flex;
+    flex-direction: column;
+
+    gap: 12px;
+}
+
+.desktop-icon {
+    width: 80px;
+
+    padding: 8px;
+
+    display: flex;
+    flex-direction: column;
+
+    align-items: center;
+
+    gap: 5px;
+
+    border-radius: 10px;
+
+    cursor: pointer;
+
+    user-select: none;
+
+    transition: 0.15s;
+}
+
+.desktop-icon:hover {
+    background: rgba(255, 255, 255, 0.08);
+}
+
+.desktop-icon:active {
+    transform: scale(0.95);
+}
+
+.desktop-icon .icon {
+    font-size: 32px;
+}
+
+.desktop-icon span {
+    font-size: 12px;
+}
+
+
+/* ================= WINDOWS ================= */
+
+.window {
+    position: absolute;
+
+    top: 50%;
+    left: 50%;
+
+    width: 430px;
+    min-height: 250px;
+
+    transform: translate(-50%, -50%);
+
+    background: rgba(18, 20, 32, 0.95);
+
+    backdrop-filter: blur(20px);
+
+    border: 1px solid rgba(255, 255, 255, 0.12);
+
+    border-radius: 14px;
+
+    box-shadow:
+        0 20px 60px rgba(0, 0, 0, 0.55);
+
+    overflow: hidden;
+
+    z-index: 20;
+}
+
+
+/* ================= WINDOW HEADER ================= */
+
+.window-header {
+    height: 46px;
+
+    display: flex;
+
+    align-items: center;
+
+    justify-content: space-between;
+
+    padding: 0 10px 0 15px;
+
+    background: rgba(255, 255, 255, 0.05);
+
+    border-bottom:
+        1px solid rgba(255, 255, 255, 0.08);
+
+    cursor: grab;
+}
+
+.window-header:active {
+    cursor: grabbing;
+}
+
+.window-title {
+    font-size: 14px;
+    font-weight: bold;
+}
+
+
+/* ================= CONTROLS ================= */
+
+.window-controls {
+    display: flex;
+    gap: 4px;
+}
+
+.window-controls button {
+    width: 28px;
+    height: 28px;
+
+    border: none;
+    border-radius: 6px;
+
+    background: transparent;
+
+    color: white;
+
+    font-size: 16px;
+
+    cursor: pointer;
+}
+
+.window-controls button:hover {
+    background: rgba(255, 255, 255, 0.12);
+}
+
+.window-controls .close-btn:hover {
+    background: rgba(255, 70, 70, 0.8);
+}
+
+
+/* ================= CONTENT ================= */
+
+.window-content {
+    padding: 20px;
+}
+
+.window-content h2 {
+    margin-bottom: 12px;
+}
+
+.small-text {
+    margin-top: 12px;
+    color: #aaa;
+    font-size: 13px;
+}
+
+
+/* ================= MAXIMIZE ================= */
+
+.window.maximized {
+    top: 0 !important;
+    left: 0 !important;
+
+    width: 100% !important;
+    height: calc(100% - 84px) !important;
+
+    transform: none !important;
+
+    border-radius: 0;
+}
+
+
+/* ================= MINIMIZE ================= */
+
+.window.minimized {
+    display: none;
+}
+
+
+/* ================= FILE MANAGER ================= */
+
+.file-path {
+    padding: 10px;
+
+    margin-bottom: 12px;
+
+    border-radius: 8px;
+
+    background: rgba(255, 255, 255, 0.06);
+
+    color: #bbb;
+
+    font-size: 13px;
+}
+
+.file-list {
+    display: flex;
+    flex-direction: column;
+
+    gap: 8px;
+}
+
+.file {
+    width: 100%;
+
+    border: none;
+
+    text-align: left;
+
+    padding: 12px;
+
+    border-radius: 8px;
+
+    background: rgba(255, 255, 255, 0.05);
+
+    color: white;
+
+    cursor: pointer;
+
+    font-size: 14px;
+}
+
+.file:hover {
+    background: rgba(255, 255, 255, 0.12);
+}
+
+#file-message {
+    margin-top: 12px;
+
+    color: #aaa;
+
+    font-size: 13px;
+}
+
+
+/* ================= NOTES ================= */
+
+#notes-area {
+    width: 100%;
+    height: 180px;
+
+    resize: none;
+
+    border: none;
+    outline: none;
+
+    border-radius: 10px;
+
+    padding: 12px;
+
+    background: rgba(0, 0, 0, 0.3);
+
+    color: white;
+
+    font-family: Arial, sans-serif;
+
+    font-size: 14px;
+}
+
+
+/* ================= TERMINAL ================= */
+
+.terminal-content {
+    padding: 15px;
+
+    height: 260px;
+
+    background: #080b10;
+
+    color: #d7ffd7;
+
+    font-family: monospace;
+
+    font-size: 13px;
+
+    overflow-y: auto;
+}
+
+.terminal-line {
+    display: flex;
+    gap: 8px;
+}
+
+#terminal-input {
+    flex: 1;
+
+    border: none;
+    outline: none;
+
+    background: transparent;
+
+    color: white;
+
+    font-family: monospace;
+}
+
+
+/* ================= SETTINGS ================= */
+
+.setting-card {
+    padding: 14px;
+
+    margin-top: 10px;
+
+    border-radius: 10px;
+
+    background: rgba(255, 255, 255, 0.05);
+}
+
+.setting-card h3 {
+    margin-bottom: 6px;
+}
+
+.setting-card p {
+    color: #aaa;
+
+    font-size: 13px;
+
+    margin-top: 4px;
+}
+
+#sound-toggle {
+    margin-top: 10px;
+
+    padding: 9px 13px;
+
+    border: none;
+
+    border-radius: 8px;
+
+    background: rgba(255, 255, 255, 0.1);
+
+    color: white;
+
+    cursor: pointer;
+}
+
+#sound-toggle:hover {
+    background: rgba(255, 255, 255, 0.18);
+}
+
+
+/* ================= TASKBAR ================= */
+
+#taskbar {
+    position: absolute;
+
+    bottom: 18px;
+    left: 50%;
+
+    transform: translateX(-50%);
+
+    width: 500px;
+    height: 48px;
+
+    display: flex;
+
+    align-items: center;
+
+    gap: 8px;
+
+    padding-left: 8px;
+    padding-right: 75px;
+
+    z-index: 2100;
+}
+
+
+/* ================= J BUTTON ================= */
+
+#menu-button {
+    width: 42px;
+    height: 42px;
+
+    flex-shrink: 0;
+
+    border: none;
+
+    border-radius: 12px;
+
+    background: rgba(255, 255, 255, 0.14);
+
+    color: white;
+
+    font-size: 19px;
+
+    font-weight: bold;
+
+    cursor: pointer;
+
+    transition: 0.15s;
+}
+
+#menu-button:hover {
+    background: rgba(255, 255, 255, 0.25);
+
+    transform: scale(1.05);
+}
+
+#menu-button:active {
+    transform: scale(0.95);
+}
+
+
+/* ================= TASKBAR APPS ================= */
+
+#taskbar-apps {
+    display: flex;
+
+    align-items: center;
+
+    gap: 8px;
+
+    overflow-x: auto;
+}
+
+.taskbar-app {
+    height: 38px;
+
+    padding: 0 13px;
+
+    border: none;
+
+    border-radius: 9px;
+
+    background: rgba(255, 255, 255, 0.08);
+
+    color: white;
+
+    cursor: pointer;
+
+    white-space: nowrap;
+
+    font-size: 12px;
+}
+
+.taskbar-app:hover {
+    background: rgba(255, 255, 255, 0.16);
+}
+
+
+/* ================= LAUNCHER ================= */
+
+#app-launcher {
+    position: absolute;
+
+    left: 50%;
+    bottom: 84px;
+
+    transform: translateX(-50%);
+
+    width: 300px;
+
+    padding: 18px;
+
+    background: rgba(15, 18, 30, 0.96);
+
+    backdrop-filter: blur(20px);
+
+    border: 1px solid rgba(255, 255, 255, 0.12);
+
+    border-radius: 18px;
+
+    box-shadow:
+        0 20px 60px rgba(0, 0, 0, 0.55);
+
+    z-index: 3000;
+
+    display: none;
+}
+
+.launcher-title {
+    font-size: 18px;
+
+    font-weight: bold;
+
+    margin-bottom: 14px;
+}
+
+.launcher-search input {
+    width: 100%;
+
+    padding: 10px;
+
+    border: none;
+
+    outline: none;
+
+    border-radius: 9px;
+
+    background: rgba(255, 255, 255, 0.08);
+
+    color: white;
+
+    margin-bottom: 12px;
+}
+
+.launcher-apps {
+    display: flex;
+
+    flex-direction: column;
+
+    gap: 6px;
+}
+
+.launcher-app {
+    width: 100%;
+
+    padding: 12px;
+
+    text-align: left;
+
+    border: none;
+
+    border-radius: 9px;
+
+    background: transparent;
+
+    color: white;
+
+    cursor: pointer;
+
+    font-size: 14px;
+}
+
+.launcher-app:hover {
+    background: rgba(255, 255, 255, 0.12);
+}
+
+
+/* ================= MOBILE ================= */
+
+@media (max-width: 600px) {
+
+    #top-bar {
+        width: calc(100% - 20px);
+    }
+
+    #taskbar {
+        width: calc(100% - 20px);
+    }
+
+    .window {
+        width: calc(100% - 30px);
+    }
+
+}

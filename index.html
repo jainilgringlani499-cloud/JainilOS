@@ -1,0 +1,297 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>JAINIL OS</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+    <!-- BOOT SCREEN -->
+    <div id="boot-screen">
+        <h1>JAINIL OS</h1>
+        <p id="boot-text">Starting...</p>
+    </div>
+
+    <audio id="boot-sound" src="assets/boot.mp3" preload="auto"></audio>
+
+
+    <!-- DESKTOP -->
+    <div id="desktop">
+
+        <!-- TOP BAR -->
+        <div id="top-bar">
+            <div class="os-name">JAINIL OS</div>
+            <div id="clock">00:00</div>
+        </div>
+
+
+        <!-- DESKTOP ICONS -->
+        <div class="desktop-icons">
+
+            <div class="desktop-icon" data-app="files">
+                <div class="icon">📁</div>
+                <span>Files</span>
+            </div>
+
+            <div class="desktop-icon" data-app="notes">
+                <div class="icon">📝</div>
+                <span>Notes</span>
+            </div>
+
+            <div class="desktop-icon" data-app="terminal">
+                <div class="icon">💻</div>
+                <span>Terminal</span>
+            </div>
+
+            <div class="desktop-icon" data-app="settings">
+                <div class="icon">⚙️</div>
+                <span>Settings</span>
+            </div>
+
+        </div>
+
+
+        <!-- WELCOME WINDOW -->
+        <div class="window" id="welcome-window" data-app="welcome">
+
+            <div class="window-header">
+                <span class="window-title">Welcome</span>
+
+                <div class="window-controls">
+                    <button class="minimize-btn">−</button>
+                    <button class="maximize-btn">□</button>
+                    <button class="close-btn">×</button>
+                </div>
+            </div>
+
+            <div class="window-content">
+                <h2>Welcome to JAINIL OS 👋</h2>
+                <p>Your desktop is ready.</p>
+                <p class="small-text">
+                    Welcome to your new operating system.
+                </p>
+            </div>
+
+        </div>
+
+
+        <!-- FILE MANAGER -->
+        <div class="window app-window" id="files-window" data-app="files">
+
+            <div class="window-header">
+                <span class="window-title">File Manager</span>
+
+                <div class="window-controls">
+                    <button class="minimize-btn">−</button>
+                    <button class="maximize-btn">□</button>
+                    <button class="close-btn">×</button>
+                </div>
+            </div>
+
+            <div class="window-content">
+
+                <div class="file-path">
+                    🏠 Home
+                </div>
+
+                <div class="file-list">
+
+                    <button class="file">
+                        📁 Documents
+                    </button>
+
+                    <button class="file">
+                        📁 Downloads
+                    </button>
+
+                    <button class="file">
+                        📁 Pictures
+                    </button>
+
+                    <button class="file">
+                        📄 README.txt
+                    </button>
+
+                </div>
+
+                <div id="file-message"></div>
+
+            </div>
+
+        </div>
+
+
+        <!-- NOTES -->
+        <div class="window app-window" id="notes-window" data-app="notes">
+
+            <div class="window-header">
+                <span class="window-title">Notes</span>
+
+                <div class="window-controls">
+                    <button class="minimize-btn">−</button>
+                    <button class="maximize-btn">□</button>
+                    <button class="close-btn">×</button>
+                </div>
+            </div>
+
+            <div class="window-content">
+
+                <h2>📝 Notes</h2>
+
+                <textarea
+                    id="notes-area"
+                    placeholder="Start writing..."></textarea>
+
+            </div>
+
+        </div>
+
+
+        <!-- TERMINAL -->
+        <div class="window app-window" id="terminal-window" data-app="terminal">
+
+            <div class="window-header">
+                <span class="window-title">Terminal</span>
+
+                <div class="window-controls">
+                    <button class="minimize-btn">−</button>
+                    <button class="maximize-btn">□</button>
+                    <button class="close-btn">×</button>
+                </div>
+            </div>
+
+            <div class="terminal-content">
+
+                <div>JAINIL OS Terminal</div>
+                <div>Type <b>help</b> to see commands.</div>
+
+                <br>
+
+                <div class="terminal-line">
+                    <span>jainil@os:~$</span>
+
+                    <input
+                        id="terminal-input"
+                        type="text"
+                        autocomplete="off">
+                </div>
+
+                <div id="terminal-output"></div>
+
+            </div>
+
+        </div>
+
+
+        <!-- SETTINGS -->
+        <div class="window app-window" id="settings-window" data-app="settings">
+
+            <div class="window-header">
+                <span class="window-title">Settings</span>
+
+                <div class="window-controls">
+                    <button class="minimize-btn">−</button>
+                    <button class="maximize-btn">□</button>
+                    <button class="close-btn">×</button>
+                </div>
+            </div>
+
+            <div class="window-content">
+
+                <h2>⚙️ Settings</h2>
+
+                <div class="setting-card">
+                    <h3>JAINIL OS</h3>
+                    <p>Web-based operating system</p>
+                    <p>Version 1.0</p>
+                </div>
+
+                <div class="setting-card">
+                    <h3>🔊 Boot Sound</h3>
+
+                    <button id="sound-toggle">
+                        Toggle Boot Sound
+                    </button>
+                </div>
+
+                <div class="setting-card">
+                    <h3>ℹ️ About</h3>
+                    <p>
+                        JAINIL OS is a personal web OS project
+                        created by Jainil.
+                    </p>
+                </div>
+
+            </div>
+
+        </div>
+
+
+        <!-- TASKBAR -->
+        <div id="taskbar">
+
+            <button id="menu-button">
+                J
+            </button>
+
+            <div id="taskbar-apps"></div>
+
+        </div>
+
+
+        <!-- APP LAUNCHER -->
+        <div id="app-launcher">
+
+            <div class="launcher-title">
+                JAINIL OS
+            </div>
+
+            <div class="launcher-search">
+
+                <input
+                    id="app-search"
+                    type="text"
+                    placeholder="Search apps...">
+
+            </div>
+
+            <div class="launcher-apps">
+
+                <button
+                    class="launcher-app"
+                    data-app="files">
+                    📁 File Manager
+                </button>
+
+                <button
+                    class="launcher-app"
+                    data-app="notes">
+                    📝 Notes
+                </button>
+
+                <button
+                    class="launcher-app"
+                    data-app="terminal">
+                    💻 Terminal
+                </button>
+
+                <button
+                    class="launcher-app"
+                    data-app="settings">
+                    ⚙️ Settings
+                </button>
+
+            </div>
+
+        </div>
+
+    </div>
+
+
+    <script src="script.js"></script>
+
+</body>
+</html>
