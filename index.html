@@ -1,377 +1,764 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
     <title>JAINIL OS</title>
+
     <link rel="stylesheet" href="style.css">
 </head>
 
 <body>
 
-    <!-- BOOT SCREEN -->
-    <div id="boot-screen">
-        <h1>JAINIL OS</h1>
-        <p id="boot-text">Starting...</p>
-    </div>
+<!-- =================================================
+     BOOT SCREEN
+================================================= -->
 
-    <audio id="boot-sound" src="assets/boot.mp3" preload="auto"></audio>
+<div id="boot-screen">
 
+    <h1>JAINIL OS</h1>
 
-    <!-- DESKTOP -->
-    <div id="desktop">
-
-        <!-- TOP BAR -->
-        <div id="top-bar">
-            <div class="os-name">JAINIL OS</div>
-            <div id="clock">00:00</div>
-        </div>
-
-
-        <!-- DESKTOP ICONS -->
-        <div class="desktop-icons">
-
-            <div class="desktop-icon" data-app="files">
-                <div class="icon">📁</div>
-                <span>Files</span>
-            </div>
-
-            <div class="desktop-icon" data-app="notes">
-                <div class="icon">📝</div>
-                <span>Notes</span>
-            </div>
-
-            <div class="desktop-icon" data-app="terminal">
-                <div class="icon">💻</div>
-                <span>Terminal</span>
-            </div>
-
-            <div class="desktop-icon" data-app="settings">
-                <div class="icon">⚙️</div>
-                <span>Settings</span>
-            </div>
-
-            <div class="desktop-icon" data-app="editor">
-
-    <div class="icon">📝</div>
-
-    <span>Editor</span>
+    <p id="boot-text">Starting...</p>
 
 </div>
 
-        </div>
-        <!-- TEXT EDITOR -->
+<audio
+    id="boot-sound"
+    src="assets/boot.mp3"
+    preload="auto">
+</audio>
 
-<div class="window app-window" id="editor-window" data-app="editor">
 
-    <div class="window-header">
+<!-- =================================================
+     DESKTOP
+================================================= -->
 
-        <span class="window-title">
-            Text Editor
-        </span>
+<div id="desktop">
 
-        <div class="window-controls">
-            <button class="minimize-btn">−</button>
-            <button class="maximize-btn">□</button>
-            <button class="close-btn">×</button>
+
+    <!-- TOP BAR / DOCK BACKGROUND -->
+
+    <div id="top-bar">
+
+        <div id="clock">
+            00:00
         </div>
 
     </div>
 
-    <div class="editor-content">
 
-        <div class="editor-toolbar">
+    <!-- =================================================
+         DESKTOP ICONS
+    ================================================= -->
 
-            <span id="editor-filename">
-                Untitled.txt
+    <div class="desktop-icons">
+
+        <div class="desktop-icon" data-app="files">
+            <div class="icon">📁</div>
+            <span>Files</span>
+        </div>
+
+        <div class="desktop-icon" data-app="notes">
+            <div class="icon">📝</div>
+            <span>Notes</span>
+        </div>
+
+        <div class="desktop-icon" data-app="editor">
+            <div class="icon">📄</div>
+            <span>Editor</span>
+        </div>
+
+        <div class="desktop-icon" data-app="terminal">
+            <div class="icon">💻</div>
+            <span>Terminal</span>
+        </div>
+
+        <div class="desktop-icon" data-app="settings">
+            <div class="icon">⚙️</div>
+            <span>Settings</span>
+        </div>
+
+        <div class="desktop-icon" data-app="system">
+            <div class="icon">🖥️</div>
+            <span>System</span>
+        </div>
+
+        <div class="desktop-icon" data-app="trash">
+            <div class="icon">🗑️</div>
+            <span>Trash</span>
+        </div>
+
+    </div>
+
+
+    <!-- =================================================
+         WELCOME
+    ================================================= -->
+
+    <div
+        class="window"
+        id="welcome-window"
+        data-app="welcome">
+
+        <div class="window-header">
+
+            <span class="window-title">
+                Welcome
             </span>
 
-            <button id="save-file">
-                💾 Save
+            <div class="window-controls">
+
+                <button class="minimize-btn">−</button>
+
+                <button class="maximize-btn">□</button>
+
+                <button class="close-btn">×</button>
+
+            </div>
+
+        </div>
+
+        <div class="window-content">
+
+            <h2>Welcome to JAINIL OS 👋</h2>
+
+            <p>Your desktop is ready.</p>
+
+            <p class="small-text">
+                A personal web-based operating system.
+            </p>
+
+        </div>
+
+    </div>
+
+
+    <!-- =================================================
+         FILE MANAGER
+    ================================================= -->
+
+    <div
+        class="window app-window"
+        id="files-window"
+        data-app="files">
+
+        <div class="window-header">
+
+            <span class="window-title">
+                File Manager
+            </span>
+
+            <div class="window-controls">
+
+                <button class="minimize-btn">−</button>
+                <button class="maximize-btn">□</button>
+                <button class="close-btn">×</button>
+
+            </div>
+
+        </div>
+
+        <div class="window-content">
+
+            <div class="file-navigation">
+
+                <button id="file-back">
+                    ← Back
+                </button>
+
+                <button id="file-home">
+                    🏠 Home
+                </button>
+
+                <span id="file-path">
+                    Home
+                </span>
+
+            </div>
+
+            <div
+                id="file-list"
+                class="file-list">
+            </div>
+
+            <div id="file-message">
+            </div>
+
+        </div>
+
+    </div>
+
+
+    <!-- =================================================
+         NOTES
+    ================================================= -->
+
+    <div
+        class="window app-window"
+        id="notes-window"
+        data-app="notes">
+
+        <div class="window-header">
+
+            <span class="window-title">
+                Notes
+            </span>
+
+            <div class="window-controls">
+
+                <button class="minimize-btn">−</button>
+                <button class="maximize-btn">□</button>
+                <button class="close-btn">×</button>
+
+            </div>
+
+        </div>
+
+        <div class="window-content">
+
+            <h2>📝 Notes</h2>
+
+            <textarea
+                id="notes-area"
+                placeholder="Start writing..."></textarea>
+
+            <div
+                id="notes-status"
+                class="status-text">
+            </div>
+
+        </div>
+
+    </div>
+
+
+    <!-- =================================================
+         TEXT EDITOR
+    ================================================= -->
+
+    <div
+        class="window app-window"
+        id="editor-window"
+        data-app="editor">
+
+        <div class="window-header">
+
+            <span class="window-title">
+                Text Editor
+            </span>
+
+            <div class="window-controls">
+
+                <button class="minimize-btn">−</button>
+                <button class="maximize-btn">□</button>
+                <button class="close-btn">×</button>
+
+            </div>
+
+        </div>
+
+        <div class="editor-content">
+
+            <div class="editor-toolbar">
+
+                <span id="editor-filename">
+                    Untitled.txt
+                </span>
+
+                <button id="save-file">
+                    💾 Save
+                </button>
+
+            </div>
+
+            <textarea
+                id="editor-area"
+                placeholder="Start writing..."></textarea>
+
+        </div>
+
+    </div>
+
+
+    <!-- =================================================
+         TERMINAL
+    ================================================= -->
+
+    <div
+        class="window app-window"
+        id="terminal-window"
+        data-app="terminal">
+
+        <div class="window-header">
+
+            <span class="window-title">
+                Terminal
+            </span>
+
+            <div class="window-controls">
+
+                <button class="minimize-btn">−</button>
+                <button class="maximize-btn">□</button>
+                <button class="close-btn">×</button>
+
+            </div>
+
+        </div>
+
+        <div class="terminal-content">
+
+            <div>JAINIL OS Terminal</div>
+
+            <div>
+                Type <b>help</b> to see commands.
+            </div>
+
+            <br>
+
+            <div class="terminal-line">
+
+                <span>
+                    jainil@os:~$
+                </span>
+
+                <input
+                    id="terminal-input"
+                    type="text"
+                    autocomplete="off">
+
+            </div>
+
+            <div id="terminal-output"></div>
+
+        </div>
+
+    </div>
+
+
+    <!-- =================================================
+         SETTINGS
+    ================================================= -->
+
+    <div
+        class="window app-window"
+        id="settings-window"
+        data-app="settings">
+
+        <div class="window-header">
+
+            <span class="window-title">
+                Settings
+            </span>
+
+            <div class="window-controls">
+
+                <button class="minimize-btn">−</button>
+                <button class="maximize-btn">□</button>
+                <button class="close-btn">×</button>
+
+            </div>
+
+        </div>
+
+        <div class="window-content">
+
+            <h2>⚙️ Settings</h2>
+
+
+            <div class="setting-card">
+
+                <h3>🎨 Appearance</h3>
+
+                <p>Choose your JAINIL OS theme.</p>
+
+                <div class="setting-buttons">
+
+                    <button data-theme="default">
+                        🌌 Default
+                    </button>
+
+                    <button data-theme="purple">
+                        🟣 Purple
+                    </button>
+
+                    <button data-theme="blue">
+                        🔵 Blue
+                    </button>
+
+                    <button data-theme="green">
+                        🟢 Green
+                    </button>
+
+                </div>
+
+            </div>
+
+
+            <div class="setting-card">
+
+                <h3>🖼️ Wallpaper</h3>
+
+                <div class="setting-buttons">
+
+                    <button data-wallpaper="space">
+                        Space
+                    </button>
+
+                    <button data-wallpaper="midnight">
+                        Midnight
+                    </button>
+
+                    <button data-wallpaper="aurora">
+                        Aurora
+                    </button>
+
+                    <button data-wallpaper="plain">
+                        Plain
+                    </button>
+
+                </div>
+
+            </div>
+
+
+            <div class="setting-card">
+
+                <h3>🔊 Boot Sound</h3>
+
+                <button id="sound-toggle">
+                    Boot Sound: ON
+                </button>
+
+            </div>
+
+
+            <div class="setting-card">
+
+                <h3>🔒 Security</h3>
+
+                <button id="lock-now">
+                    Lock JAINIL OS
+                </button>
+
+            </div>
+
+
+            <div class="setting-card">
+
+                <h3>ℹ️ About</h3>
+
+                <p>
+                    JAINIL OS
+                </p>
+
+                <p>
+                    Web-based operating system
+                </p>
+
+                <p>
+                    Version 2.0
+                </p>
+
+                <p>
+                    Created by Jainil
+                </p>
+
+            </div>
+
+        </div>
+
+    </div>
+
+
+    <!-- =================================================
+         SYSTEM INFORMATION
+    ================================================= -->
+
+    <div
+        class="window app-window"
+        id="system-window"
+        data-app="system">
+
+        <div class="window-header">
+
+            <span class="window-title">
+                System Information
+            </span>
+
+            <div class="window-controls">
+
+                <button class="minimize-btn">−</button>
+                <button class="maximize-btn">□</button>
+                <button class="close-btn">×</button>
+
+            </div>
+
+        </div>
+
+        <div class="window-content">
+
+            <h2>🖥️ System Information</h2>
+
+            <div class="system-grid">
+
+                <div class="system-card">
+                    <span>Operating System</span>
+                    <strong>JAINIL OS</strong>
+                </div>
+
+                <div class="system-card">
+                    <span>Version</span>
+                    <strong>2.0</strong>
+                </div>
+
+                <div class="system-card">
+                    <span>Browser</span>
+                    <strong id="browser-info">Detecting...</strong>
+                </div>
+
+                <div class="system-card">
+                    <span>Platform</span>
+                    <strong id="platform-info">Detecting...</strong>
+                </div>
+
+                <div class="system-card">
+                    <span>Screen</span>
+                    <strong id="screen-info">Detecting...</strong>
+                </div>
+
+                <div class="system-card">
+                    <span>Language</span>
+                    <strong id="language-info">Detecting...</strong>
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>
+
+
+    <!-- =================================================
+         TRASH
+    ================================================= -->
+
+    <div
+        class="window app-window"
+        id="trash-window"
+        data-app="trash">
+
+        <div class="window-header">
+
+            <span class="window-title">
+                Recycle Bin
+            </span>
+
+            <div class="window-controls">
+
+                <button class="minimize-btn">−</button>
+                <button class="maximize-btn">□</button>
+                <button class="close-btn">×</button>
+
+            </div>
+
+        </div>
+
+        <div class="window-content">
+
+            <h2>🗑️ Recycle Bin</h2>
+
+            <div
+                id="trash-list"
+                class="file-list">
+            </div>
+
+            <button
+                id="empty-trash"
+                class="danger-button">
+                Empty Recycle Bin
             </button>
 
         </div>
 
-        <textarea
-            id="editor-area"
-            placeholder="Start writing..."></textarea>
-            <!-- NOTIFICATION CENTER -->
+    </div>
 
-<div id="notification-center">
 
-    <div class="notification-header">
+    <!-- =================================================
+         TASKBAR
+    ================================================= -->
 
-        <span>Notifications</span>
+    <div id="taskbar">
 
-        <button id="clear-notifications">
-            Clear
+        <button id="menu-button">
+            J
+        </button>
+
+        <div id="taskbar-apps">
+        </div>
+
+        <button id="global-search-button">
+            🔍
+        </button>
+
+        <button id="notification-button">
+            🔔
         </button>
 
     </div>
 
-    <div id="notification-list">
+
+    <!-- =================================================
+         APP LAUNCHER
+    ================================================= -->
+
+    <div id="app-launcher">
+
+        <div class="launcher-title">
+            JAINIL OS
+        </div>
+
+        <div class="launcher-search">
+
+            <input
+                id="app-search"
+                type="text"
+                placeholder="Search apps...">
+
+        </div>
+
+        <div class="launcher-apps">
+
+            <button
+                class="launcher-app"
+                data-app="files">
+                📁 File Manager
+            </button>
+
+            <button
+                class="launcher-app"
+                data-app="notes">
+                📝 Notes
+            </button>
+
+            <button
+                class="launcher-app"
+                data-app="editor">
+                📄 Text Editor
+            </button>
+
+            <button
+                class="launcher-app"
+                data-app="terminal">
+                💻 Terminal
+            </button>
+
+            <button
+                class="launcher-app"
+                data-app="settings">
+                ⚙️ Settings
+            </button>
+
+            <button
+                class="launcher-app"
+                data-app="system">
+                🖥️ System Info
+            </button>
+
+            <button
+                class="launcher-app"
+                data-app="trash">
+                🗑️ Recycle Bin
+            </button>
+
+        </div>
 
     </div>
 
-</div>
 
-    </div>
+    <!-- =================================================
+         GLOBAL SEARCH
+    ================================================= -->
 
-</div>         
+    <div id="search-panel">
 
+        <div class="search-box">
 
-        <!-- WELCOME WINDOW -->
-        <div class="window" id="welcome-window" data-app="welcome">
-
-            <div class="window-header">
-                <span class="window-title">Welcome</span>
-
-                <div class="window-controls">
-                    <button class="minimize-btn">−</button>
-                    <button class="maximize-btn">□</button>
-                    <button class="close-btn">×</button>
-                </div>
+            <div class="search-title">
+                🔍 Search JAINIL OS
             </div>
 
-            <div class="window-content">
-                <h2>Welcome to JAINIL OS 👋</h2>
-                <p>Your desktop is ready.</p>
-                <p class="small-text">
-                    Welcome to your new operating system.
-                </p>
+            <input
+                id="global-search"
+                type="text"
+                placeholder="Search apps and files...">
+
+            <div id="search-results">
             </div>
 
         </div>
 
-
-        <!-- FILE MANAGER -->
-        <!-- FILE MANAGER -->
-<div class="window app-window" id="files-window" data-app="files">
-
-    <div class="window-header">
-
-        <span class="window-title">
-            File Manager
-        </span>
-
-        <div class="window-controls">
-            <button class="minimize-btn">−</button>
-            <button class="maximize-btn">□</button>
-            <button class="close-btn">×</button>
-        </div>
-
     </div>
 
-    <div class="window-content">
 
-        <!-- NAVIGATION -->
-        <div class="file-navigation">
+    <!-- =================================================
+         NOTIFICATION CENTER
+    ================================================= -->
 
-            <button id="file-back">
-                ← Back
-            </button>
+    <div id="notification-center">
 
-            <button id="file-home">
-                🏠 Home
-            </button>
+        <div class="notification-header">
 
-            <span id="file-path">
-                Home
+            <span>
+                Notifications
             </span>
 
+            <button id="clear-notifications">
+                Clear
+            </button>
+
         </div>
 
-
-        <!-- FILE LIST -->
-        <div id="file-list" class="file-list">
-        </div>
-
-
-        <!-- FILE MESSAGE -->
-        <div id="file-message">
+        <div id="notification-list">
         </div>
 
     </div>
 
-</div>
 
+    <!-- =================================================
+         LOCK SCREEN
+    ================================================= -->
 
-        <!-- NOTES -->
-        <div class="window app-window" id="notes-window" data-app="notes">
+    <div id="lock-screen">
 
-            <div class="window-header">
-                <span class="window-title">Notes</span>
+        <div class="lock-content">
 
-                <div class="window-controls">
-                    <button class="minimize-btn">−</button>
-                    <button class="maximize-btn">□</button>
-                    <button class="close-btn">×</button>
-                </div>
+            <div class="lock-time" id="lock-time">
+                00:00
             </div>
 
-            <div class="window-content">
-                
-
-                <h2>📝 Notes</h2>
-
-                <textarea
-                    id="notes-area"
-                    placeholder="Start writing..."></textarea>
-
+            <div class="lock-date" id="lock-date">
+                Loading...
             </div>
 
-        </div>
-
-
-        <!-- TERMINAL -->
-        <div class="window app-window" id="terminal-window" data-app="terminal">
-
-            <div class="window-header">
-                <span class="window-title">Terminal</span>
-
-                <div class="window-controls">
-                    <button class="minimize-btn">−</button>
-                    <button class="maximize-btn">□</button>
-                    <button class="close-btn">×</button>
-                </div>
+            <div class="lock-user">
+                👤 Jainil
             </div>
 
-            <div class="terminal-content">
-
-                <div>JAINIL OS Terminal</div>
-                <div>Type <b>help</b> to see commands.</div>
-
-                <br>
-
-                <div class="terminal-line">
-                    <span>jainil@os:~$</span>
-
-                    <input
-                        id="terminal-input"
-                        type="text"
-                        autocomplete="off">
-                </div>
-
-                <div id="terminal-output"></div>
-
-            </div>
-
-        </div>
-
-
-        <!-- SETTINGS -->
-        <div class="window app-window" id="settings-window" data-app="settings">
-
-            <div class="window-header">
-                <span class="window-title">Settings</span>
-
-                <div class="window-controls">
-                    <button class="minimize-btn">−</button>
-                    <button class="maximize-btn">□</button>
-                    <button class="close-btn">×</button>
-                </div>
-            </div>
-
-            <div class="window-content">
-
-                <h2>⚙️ Settings</h2>
-
-                <div class="setting-card">
-                    <h3>JAINIL OS</h3>
-                    <p>Web-based operating system</p>
-                    <p>Version 1.0</p>
-                </div>
-
-                <div class="setting-card">
-                    <h3>🔊 Boot Sound</h3>
-
-                    <button id="sound-toggle">
-                        Toggle Boot Sound
-                    </button>
-                </div>
-
-                <div class="setting-card">
-                    <h3>ℹ️ About</h3>
-                    <p>
-                        JAINIL OS is a personal web OS project
-                        created by Jainil.
-                    </p>
-                </div>
-
-            </div>
-
-        </div>
-
-
-        <div id="taskbar">
-
-    <button id="menu-button">
-        J
-    </button>
-
-    <div id="taskbar-apps"></div>
-
-    <button id="notification-button">
-        🔔
-    </button>
-
-</div>
-
-        <!-- APP LAUNCHER -->
-        <div id="app-launcher">
-
-            <div class="launcher-title">
-                JAINIL OS
-            </div>
-
-            <div class="launcher-search">
-
-                <input
-                    id="app-search"
-                    type="text"
-                    placeholder="Search apps...">
-
-            </div>
-
-            <div class="launcher-apps">
-
-                <button
-                    class="launcher-app"
-                    data-app="files">
-                    📁 File Manager
-                </button>
-
-                <button
-                    class="launcher-app"
-                    data-app="notes">
-                    📝 Notes
-                </button>
-
-                <button
-                    class="launcher-app"
-                    data-app="terminal">
-                    💻 Terminal
-                </button>
-
-                <button
-                    class="launcher-app"
-                    data-app="settings">
-                    ⚙️ Settings
-                </button>
-                <button
-    class="launcher-app"
-    data-app="editor">
-    📝 Text Editor
-</button>
-
-            </div>
+            <button id="unlock-button">
+                🔓 Unlock
+            </button>
 
         </div>
 
     </div>
 
 
-    <script src="script.js"></script>
+</div>
+
+
+<script src="script.js"></script>
 
 </body>
 </html>
